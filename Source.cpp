@@ -50,5 +50,34 @@ int main() {
 	for (int i = 0; i < numP; i++) {
 		file << " " << i;
 	}
-	file << endl;
+	file << endl << endl;
+	file << "CELL_DATA " << numP + 1 << endl;
+	file << "SCALARS cell_scalars int 1" << endl;
+	file << "LOOKUP_TABLE default" << endl;
+	for (int i = 0; i < numP + 1; i++) {
+		file << i << endl;
+	}
+	file << "NORMALS cell_normals float" << endl;
+	int m = 1;
+	file << "0 0 " << m << endl;
+	file << "0 0 " << -m << endl;
+	file << "0 " << m << " 0" << endl;
+	file << "0 " << -m << " 0" << endl;
+	file << m << " 0" << " 0" << endl;
+	file << -m << " 0" << " 0" << endl;
+	file << endl ;
+
+	file << "POINT_DATA " << numP + 1 << endl;
+	file << "SCALARS sample_scalars float 1" << endl;
+	file << "LOOKUP_TABLE my_table" << endl;
+	for (int i = 0; i < numP + 1; i++) {
+		file << i << ".0" << endl;
+	}
+	file << "LOOKUP_TABLE my_table " << numP + 1 << endl;
+	for (int i = 0; i < numP + 1; i++) {
+		file << "0.0 1.0 0.0 1.0" << endl;
+	}
+	file.close();
+
+	return 0;
 }
